@@ -45,16 +45,15 @@ const setTheme = (node) => {
     }
     case THEME.AUTO:
     default: {
-      const isDark =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const currentTime = new Date();
+      const currentHour = currentTime.getHours();
 
-      if (isDark) {
-        document.body.classList.add(darkThemeClass);
-        document.body.classList.remove(lightThemeClass);
-      } else {
+      if (currentHour >= 6 && currentHour < 18) {
         document.body.classList.add(lightThemeClass);
         document.body.classList.remove(darkThemeClass);
+      } else {
+        document.body.classList.add(darkThemeClass);
+        document.body.classList.remove(lightThemeClass);
       }
 
       buttonDark.classList.remove(classButtonSelected);
